@@ -5,7 +5,14 @@ set -e
 echo "Job started: $(date)"
 
 DATE=$(date +%Y%m%d_%H%M%S)
-FILE="/backup/backup-$DATE.tar.gz"
+
+if [ -v $NAME ]
+then
+    NOMBRE=$NAME
+else
+    NOMBRE="backup"
+
+FILE="/backup/$NOMBRE-$DATE.tar.gz"
 
 mkdir -p dump
 mongodump -h $MONGO_HOST -p $MONGO_PORT $EXTRA_OPTS
