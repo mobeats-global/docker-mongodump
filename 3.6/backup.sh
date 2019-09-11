@@ -6,11 +6,8 @@ echo "Job started: $(date)"
 
 DATE=$(date +%Y%m%d_%H%M%S)
 
-if [ -v $NAME ]
-then
-    NOMBRE=$NAME
-else
-    NOMBRE="backup"
+#get NAME from environment or set default as backup
+NOMBRE="${NAME:-backup}"
 
 FILE="/backup/$NOMBRE-$DATE.tar.gz"
 
